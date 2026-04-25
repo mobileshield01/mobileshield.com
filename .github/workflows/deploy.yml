@@ -27,10 +27,13 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install --no-package-lock
+        run: npm install
 
       - name: Build
         run: npm run build
+
+      - name: List build files (Debug)
+        run: ls -R docs
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -38,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './docs' # Where your build files are saved
+          path: docs # Point directly to the folder created by build
 
       - name: Deploy to GitHub Pages
         id: deployment
